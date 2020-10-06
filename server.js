@@ -160,3 +160,24 @@ function addEmployee(){
         init();
     });
 }
+
+
+// create function to add a new department
+function addDepartments(){
+    inquirer
+    .prompt([
+        {
+            name: "newDepartmentName",
+            message: "Name your department.",
+            type: "input",
+        }
+    ])
+    .then(({newDepartmentName}) => {
+        console.log(`${newDepartmentName}`);
+        connection.query("INSERT INTO department SET ?",
+        {
+            department_name: newDepartmentName
+        })
+        init();
+    })
+}
