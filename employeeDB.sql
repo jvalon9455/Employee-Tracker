@@ -56,16 +56,16 @@ CREATE TABLE employee (
 
 INSERT INTO employee (first_name, last_name, role_id, manager)
 VALUES 
-("Michael", "Scott", 1, "John Doe"),
-("Jim", "Halpert", 2, "Mike Chan"),
-("Dwight", "Schrute", 5, null),
-("Pamela", "Beasley", 7, "Kevin Tupik"), 
-("Stanley", "Hudson", 2, "Malia Brown"),
-("Angela", "Martin", 4, "Ashley Rodriguez"),
-("Andy", "Bernard", 8, "Sarah Lourd"),
-("Meredith", "Palmer", 12, "John Doe"),
+("Michael", "Scott", 5, "Jan Levinson"),
+("Jim", "Halpert", 7, "Asian Jim"),
+("Dwight", "Schrute", 8, "Ryan Howard"),
+("Pamela", "Beasley", 7, null), 
+("Stanley", "Hudson", 5, "Malia Brown"),
+("Angela", "Martin", 4, "Holly Flax"),
+("Andy", "Bernard", 8, "Kelly Kapoor"),
+("Meredith", "Palmer", 12, "Karen Filippelli"),
 ("Kevin", "Malone", 11, null),
-("Oscar", "Nunez", 3, null);
+("Oscar", "Nunez", 7, null);
 
 
 
