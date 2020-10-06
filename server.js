@@ -47,15 +47,14 @@ function init() {
           viewEmployeesByManager();
         } else if (selection === "Add Employee") {
           addEmployee();
-        } else if (selection === "Remove Employee") {
-          removeEmployee();
-        } else if (selection === "Update Employee Role") {
-          updateEmployeeRole();
-        } else if (selection === "Update Employee Manager") {
-          updateEmployeeManager();
-        }
+        } 
       });
   }
 
-//   
+//   create function to view all employees
+
+function viewAllEmployees(){
+    console.log("Retrieving employees")
+    const 
+}
 
