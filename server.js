@@ -31,9 +31,6 @@ function init() {
             "View All Employees by Department",
             "View All Employees by Manager",
             "Add Employee",
-            "Remove Employee",
-            "Update Employee Role",
-            "Update Employee Manager",
           ],
         },
       ])
@@ -53,8 +50,8 @@ function init() {
 
 //   create function to view all employees
 
-function viewAllEmployees(){
-    console.log("Retrieving employees")
-    const 
-}
+// function viewAllEmployees(){
+//     console.log("Retrieving employees")
+//     const 
+// }
 

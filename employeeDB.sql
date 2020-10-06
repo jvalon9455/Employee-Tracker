@@ -61,5 +61,7 @@ CREATE TABLE employee (
 );
 
 
-
+SELECT employee.first_name, employee.last_name, role.title, department.department_name, role.salary, employee.manager FROM role
+INNER JOIN employee ON employee.role_id = role.id 
+INNER JOIN department ON role.department_id = department.id; 
 
