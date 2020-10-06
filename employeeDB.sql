@@ -50,7 +50,7 @@ CREATE TABLE employee (
     role_id INT ,
     manager VARCHAR (30),
     FOREIGN KEY (role_id) REFERENCES role(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id),
+    -- FOREIGN KEY (manager_id) REFERENCES employee(id),
     PRIMARY KEY (id)
 );
 
