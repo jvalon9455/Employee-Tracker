@@ -50,7 +50,7 @@ function init() {
                 addRoles();
             } else if (selection === "Update Employee Role") {
                 updateEmployeeRole();
-            }
+            } 
         });
 }
 
@@ -69,5 +69,14 @@ function viewAllEmployees() {
     );
 }
 
+// create function to view employees by department
 
+function viewEmployeesByDepartment() {
+    connection.query(`SELECT * FROM DEPARTMENT`,
+    function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        init();
+    })
+}
 
