@@ -1,67 +1,75 @@
-DROP DATABASE IF EXISTS employee_db;
-CREATE DATABASE employee_db;
-USE employee_db;
+DROP DATABASE IF EXISTS employeeDB;
+CREATE DATABASE employeeDB; 
+USE employeeDB; 
+
+
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(30) NOT NULL,
+    department_name VARCHAR(30),
     PRIMARY KEY (id)
 );
 
-INSERT INTO 
-    department (name)
+INSERT INTO department (department_name)
 VALUES 
-    ("Orthopedics"),
-    ("Research and Development"),
-    ("Marketing"),
-    ("Human Resources"),
-    ("Physical Therapy"),
-    ("Sports Medicine");
+("Research and Devlopment"),
+("Engineering"),
+("Sales"),
+("Marketing"),
+("Finance"),
+("Human Resources"),
+("Legal");
 
 CREATE TABLE role (
-    id INT NOT NULL AUTO_INCREMENT,
-    title VARCHAR(30) NOT NULL,
-    salary DECIMAL(10, 4),
-    department_id INT,
-    PRIMARY KEY (id)
-);
+     id INT NOT NULL AUTO_INCREMENT,
+     title VARCHAR(30),
+     salary DECIMAL(8,2) NULL,
+     department_id INTEGER,
+     FOREIGN KEY (department_id) REFERENCES department(id),
+     PRIMARY KEY (id)
+); 
+INSERT INTO role (title, salary, department_id)
+VALUES ("R&D Team Lead", 120000, 4),
+("Lead Engineer", 150000, 7),
+("Software Engineer", 120000, 7),
+("Sales Lead", 95000, 1), 
+("Salesperson", 80000, 1),
+("Marketing Consultant", 80000, 2),
+("Marketing Analyst", 110000, 2),
+("Accountant", 100000, 3),
+("Account Manager", 150000, 3),
+("HR Director", 90000, 5),
+("Lawyer", 200000, 6),
+("Legal Team Lead", 250000, 6);
 
-INSERT INTO 
-    roles (title, salary, department_id)
-VALUES
-    ("Director of Orthopedics", 350000, 1),
-    ("Director of Research and Development", 80000, 2),
-    ("Director of Marketing", 80000, 3),
-    ("Head of Human Resources", 75000, 4),
-    ("Head of Physical Therapy", 140000, 5),
-    ("Director of Sports Medicine", 90000, 6),
-    ("Orthopeaedic Surgeon", 300000, 1),
-    ("Manager", 70000, 1),
-    ("Manager", 70000, 2),
-    ("Manager", 70000, 3),
-    ("Manager", 70000, 4),
-    ("Manager", 70000, 5),
-    ("Manager", 70000, 6),
-    ("R&D Associate", 65000, 2),
-    ("Marketing Coordinator", 65000, 3),
-    ("HR Recruiter", 45000, 4),
-    ("Physical Therapist", 110000, 5),
-    ("Athletic Trainer", 42000, 6);
 
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR(30) NOT NULL,
+    first_name VARCHAR(30),
     last_name VARCHAR(30),
-    role_id INT,
-    manager_id INT,
-    is_manager BOOLEAN,
+    role_id INT ,
+    manager VARCHAR (30),
     FOREIGN KEY (role_id) REFERENCES role(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id),
+    -- FOREIGN KEY (manager_id) REFERENCES employee(id),
     PRIMARY KEY (id)
 );
+
+INSERT INTO employee (first_name, last_name, role_id, manager)
+VALUES 
+("Michael", "Scott", 1, "John Doe"),
+("Jim", "Halpert", 2, "Mike Chan"),
+("Dwight", "Schrute", 5, null),
+("Pamela", "Beasley", 7, "Kevin Tupik"), 
+("Stanley", "Hudson", 2, "Malia Brown"),
+("Angela", "Martin", 4, "Ashley Rodriguez"),
+("Andy", "Bernard", 8, "Sarah Lourd"),
+("Meredith", "Palmer", 12, "John Doe"),
+("Kevin", "Malone", 11, null),
+("Oscar", "Nunez", 3, null);
+
+
 
 
 SELECT employee.first_name, employee.last_name, role.title, department.department_name, role.salary, employee.manager FROM role
 INNER JOIN employee ON employee.role_id = role.id 
-INNER JOIN department ON role.department_id = department.id; 
-
+INNER JOIN department ON role.department_id = department.id;

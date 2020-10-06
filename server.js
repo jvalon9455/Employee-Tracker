@@ -50,8 +50,15 @@ function init() {
 
 //   create function to view all employees
 
-// function viewAllEmployees(){
-//     console.log("Retrieving employees")
-//     const 
-// }
-
+function viewAllEmployees(){
+    connection.query(
+        `SELECT employee.first_name, employee.last_name, role.title, department.department_name, role.salary, employee.manager FROM role
+        INNER JOIN employee ON employee.role_id = role.id 
+        INNER JOIN department ON role.department_id = department.id`,
+        function(err, res){
+            if(err) throw err;
+            console.table(res)
+            init();
+        }
+    );
+}
