@@ -29,8 +29,13 @@ function init() {
                 choices: [
                     "View All Employees",
                     "View All Employees by Department",
-                    "View All Employees by Manager",
+                    "View Roles",
                     "Add Employee",
+                    "Add Department",
+                    "Add Roles",
+                    "Update Employee Role",
+                    // "View All Employees by Manager",
+                    "Exit",
                 ],
             },
         ])
@@ -50,7 +55,11 @@ function init() {
                 addRoles();
             } else if (selection === "Update Employee Role") {
                 updateEmployeeRole();
-            } 
+            // }else if (selection === "View All Employees by Manager") {
+            //     viewEmployeesByManager();
+            }else if (selection === "Exit") {
+                exit();
+            }
         });
 }
 
@@ -73,10 +82,21 @@ function viewAllEmployees() {
 
 function viewEmployeesByDepartment() {
     connection.query(`SELECT * FROM DEPARTMENT`,
-    function (err, res) {
+        function (err, res) {
+            if (err) throw err;
+            console.table(res);
+            init();
+        })
+}
+
+// create function to view roles
+
+function viewRoles() {
+    connection.query(`SELECT role.title, role.salary from role`, function (err, res) {
         if (err) throw err;
         console.table(res);
         init();
-    })
+    });
 }
 
+// create function to add an employee
