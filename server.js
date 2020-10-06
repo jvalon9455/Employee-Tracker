@@ -19,7 +19,7 @@ connection.connect(function (err) {
 //   start question prompts
 
 function init() {
-    console.log("Employee Manager Initialized");
+    // console.log("Employee Manager Initialized");
     inquirer
         .prompt([
             {
@@ -100,3 +100,63 @@ function viewRoles() {
 }
 
 // create function to add an employee
+function addEmployee(){
+    const newEmployee = [];
+    connection.query("SELECT title, id FROM role", (err, res) => {
+        if (err) throw err;
+        if (res.length > 0){
+            for(let i = 0; i < res.length; i++){
+                const employeePrompt = {
+                    name: res[i].title,
+                    value: res[i].id,
+                };
+                newEmployee.push(employeePrompt);
+            }
+        }
+    });
+    inquirer
+    .prompt([
+        {
+            name: "firstName",
+            message: "Enter employees first name.",
+            type: "input"
+        },
+        {
+            name: "lastName",
+            message: "Enter employees last name.",
+            type: "input"
+        },
+        {
+            name: "role",
+            message: "Select the the role of the employee.",
+            type: "list",
+            choices: newEmployee,
+        },
+        {
+            name: "employeesManager",
+            message: "Select the employees manager.",
+            type: "list",
+            choices: [
+                "Jan Levinson",
+                "Asian Jim",
+                "Ryan Howard",
+                "Malia Brown",
+                "Holly Flax",
+                "Kelly Kapoor",
+                "Karen Filippelli",
+                "None",
+            ],
+        },
+    ])
+    .then(({ firstName, lastName, role, employeesManager }) =>{
+        console.log(`${firstName} ${lastName}`);
+        connection.query("INSERT INTO employee SET ?",
+        {
+            first_name: firstName,
+            last_name: lastName,
+            role_id: role,
+            manager: employeesManager,
+        })
+        init();
+    });
+}
