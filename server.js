@@ -317,3 +317,8 @@ function updateEmployeeRole() {
     });
 }
 
+// create function to end
+function exit(){
+    console.log("You have exited.");
+    connection.end();
+}
