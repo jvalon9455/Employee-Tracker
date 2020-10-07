@@ -56,7 +56,7 @@ CREATE TABLE employee (
 
 INSERT INTO employee (first_name, last_name, role_id, manager)
 VALUES 
-("Michael", "Scott", 5, "Jan Levinson"),
+("Michael", "Scott", 2, "Jan Levinson"),
 ("Jim", "Halpert", 7, "Asian Jim"),
 ("Dwight", "Schrute", 8, "Ryan Howard"),
 ("Pamela", "Beasley", 7, null), 
