@@ -181,3 +181,45 @@ function addDepartments(){
         init();
     })
 }
+
+// create a function create a new role
+
+function addRoles(){
+    inquirer
+    .prompt([
+        {
+            name: "newRole",
+            message: "Enter new role title you would like.",
+            type: "input"
+        },
+        {
+            name: "newSalary",
+            message: "Enter your desired salary.",
+            type: "input"
+        },
+        {
+            name: "departmentRole",
+            message: "Select the department your role is under.",
+            type: "list",
+            choices: [
+                "Research and Development",
+                "Engineering",
+                "Sales",
+                "Marketing",
+                "Finance",
+                "Human Resources",
+                "Legal",
+            ]
+        }
+    ]).then(({newRole, newSalary, departmentRole}) => {
+        console.log(`${newRole}`),
+        connection.query("INSERT INTO role SET ?",
+        {
+            title: newRole,
+            salary: newSalary,
+            department_id: departmentRole,
+        })
+        viewRoles();
+        init();
+    })
+}
